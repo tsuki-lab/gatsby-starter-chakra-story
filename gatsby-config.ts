@@ -15,9 +15,8 @@ const config: GatsbyConfig = {
     options: {
       "name": "images",
       "path": "./src/images/"
-    },
-    __key: "images"
-  }]
+    }
+  }, "gatsby-plugin-pnpm"]
 };
 
 export default config;
