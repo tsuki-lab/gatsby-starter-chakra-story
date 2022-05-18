@@ -13,29 +13,42 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .js,.ts,.tsx",
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,html,md}\"",
+    "fix": "yarn typecheck && yarn lint --fix && yarn format"
   },
   "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
+    "dayjs": "^1.11.2",
     "gatsby": "^4.14.1",
-    "gatsby-plugin-emotion": "^7.14.0",
     "gatsby-plugin-image": "^2.14.1",
     "gatsby-plugin-manifest": "^4.14.0",
     "gatsby-plugin-react-helmet": "^5.14.0",
     "gatsby-plugin-sharp": "^4.14.1",
     "gatsby-plugin-sitemap": "^5.14.0",
     "gatsby-source-filesystem": "^4.14.0",
+    "gatsby-source-microcms": "^2.0.0",
     "gatsby-transformer-sharp": "^4.14.0",
-    "react": "^17.0.1",
+    "mvp.css": "^1.8.0",
+    "react": "^17.0.2",
     "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-imgix": "^9.5.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
     "@types/react": "^17.0.44",
     "@types/react-dom": "^17.0.16",
+    "@types/react-imgix": "^9.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
     "gatsby-plugin-pnpm": "^1.2.10",
+    "prettier": "^2.6.2",
     "typescript": "^4.6.4"
   }
 }
