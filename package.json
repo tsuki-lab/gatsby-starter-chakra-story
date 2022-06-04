@@ -23,7 +23,12 @@
     "fix": "yarn typecheck && yarn lint --fix && yarn format"
   },
   "dependencies": {
+    "@chakra-ui/gatsby-plugin": "^3.0.0",
+    "@chakra-ui/react": "^2.1.2",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "dayjs": "^1.11.2",
+    "framer-motion": "^6.3.10",
     "gatsby": "^4.15.2",
     "gatsby-plugin-image": "^2.14.1",
     "gatsby-plugin-manifest": "^4.14.0",

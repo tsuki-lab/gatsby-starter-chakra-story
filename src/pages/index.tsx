@@ -1,3 +1,4 @@
+import { Button } from '@chakra-ui/react'
 import { graphql, Link, PageProps } from 'gatsby'
 import React from 'react'
 import { Seo } from '../components/Seo'
@@ -10,6 +11,7 @@ export default function IndexPage({ data }: PageProps<Queries.IndexPageQuery>) {
       <Seo/>
       <h1>TOPページ</h1>
       <p>このページはGatsbyで作成されています。</p>
+      <Button color="black">ssss</Button>
       <h2>最新記事</h2>
       <ul>
         {allMicrocmsBlogs.nodes.map(node => (

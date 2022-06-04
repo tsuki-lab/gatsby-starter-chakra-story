@@ -13,6 +13,13 @@ const config: GatsbyConfig = {
   },
   plugins: [
     {
+      resolve: '@chakra-ui/gatsby-plugin',
+      options: {
+        isResettingCSS: false,
+        isUsingColorMode: false,
+      }
+    },
+    {
       resolve: 'gatsby-plugin-next-seo',
       options: {
         language: 'ja',

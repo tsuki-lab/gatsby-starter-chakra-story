@@ -3538,15 +3538,15 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
-type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type IndexPageQuery = { readonly allMicrocmsBlogs: { readonly nodes: ReadonlyArray<{ readonly blogsId: string | null, readonly title: string | null, readonly publishedAt: string | null, readonly revisedAt: string | null }> } };
-
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type SeoQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null };
+
+type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type IndexPageQuery = { readonly allMicrocmsBlogs: { readonly nodes: ReadonlyArray<{ readonly blogsId: string | null, readonly title: string | null, readonly publishedAt: string | null, readonly revisedAt: string | null }> } };
 
 type BlogPageQueryVariables = Exact<{
   id: Scalars['String'];
