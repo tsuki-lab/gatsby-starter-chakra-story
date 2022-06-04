@@ -22,7 +22,8 @@
     "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,html,md}\"",
     "fix": "yarn typecheck && yarn lint --fix && yarn format",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "^3.0.0",
@@ -73,6 +74,7 @@
     "gatsby-plugin-pnpm": "^1.2.10",
     "prettier": "^2.6.2",
     "storybook-addon-gatsby": "^0.0.5",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "husky": "^8.0.0"
   }
 }

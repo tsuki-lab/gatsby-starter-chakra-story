@@ -40,6 +40,7 @@ specifiers:
   gatsby-source-filesystem: ^4.14.0
   gatsby-source-microcms: ^2.0.0
   gatsby-transformer-sharp: ^4.14.0
+  husky: ^8.0.0
   mvp.css: ^1.8.0
   prettier: ^2.6.2
   react: ^18.1.0
@@ -96,6 +97,7 @@ devDependencies:
   eslint-plugin-react-hooks: 4.5.0_eslint@8.15.0
   eslint-plugin-storybook: 0.5.12_hcfsmds2fshutdssjqluwm76uu
   gatsby-plugin-pnpm: 1.2.10_gatsby@4.15.2
+  husky: 8.0.1
   prettier: 2.6.2
   storybook-addon-gatsby: 0.0.5_gatsby@4.15.2
   typescript: 4.6.4
@@ -12154,6 +12156,12 @@ packages:
   /human-signals/2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
+
+  /husky/8.0.1:
+    resolution: {integrity: sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
 
   /iconv-lite/0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
