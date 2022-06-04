@@ -17,5 +17,12 @@
   "rules": {
     "require-jsdoc": ["off"],
     "spaced-comment": ["off"]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.stories.tsx", "*.stories.ts"],
+      "extends":[ "plugin:storybook/recommended" ],
+      "plugins": [ "storybook" ]
+    }
+  ]
 }
