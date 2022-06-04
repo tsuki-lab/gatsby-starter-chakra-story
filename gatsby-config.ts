@@ -1,14 +1,51 @@
 import type { GatsbyConfig } from 'gatsby'
 
-require('dotenv').config()
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+})
+
+const DESCRIPTION = 'example description.'
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `Example GatsbyJS 2022`,
-    siteUrl: `https://www.yourdomain.tld`,
-    itemsLimit: 10
+    siteUrl: process.env.SITE_URL,
+    title: process.env.SITE_NAME
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-next-seo',
+      options: {
+        language: 'ja',
+        htmlAttributes: {
+          prefix: 'og: https://ogp.me/ns#'
+        },
+        title: process.env.SITE_NAME,
+        description: DESCRIPTION,
+        canonical: process.env.SITE_URL,
+        metaTags: [
+          {
+            rel: 'icon',
+            href: '/favicon.ico'
+          }
+        ],
+        openGraph: {
+          type: 'website',
+          locale: 'ja_JP',
+          url: process.env.SITE_URL,
+          site_name: process.env.SITE_NAME,
+          images: [
+            {
+              url: `${process.env.SITE_URL}ogp-image.jpg`,
+              width: 2400,
+              height: 1260
+            }
+          ]
+        },
+        twitter: {
+          cardType: 'summary_large_image'
+        }
+      }
+    },
     'gatsby-plugin-pnpm',
     'gatsby-plugin-image',
     'gatsby-plugin-react-helmet',
@@ -44,9 +81,7 @@ const config: GatsbyConfig = {
       }
     }
   ],
-  flags: {
-    GRAPHQL_TYPEGEN: true
-  }
+  graphqlTypegen: true
 }
 
 export default config

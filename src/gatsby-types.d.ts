@@ -1447,7 +1447,7 @@ type MicrocmsBlogs = Node & {
   readonly blogsId: Maybe<Scalars['String']>;
   readonly category: Maybe<MicrocmsBlogsCategory>;
   readonly children: ReadonlyArray<Node>;
-  readonly content: Maybe<ReadonlyArray<Maybe<MicrocmsBlogsContent>>>;
+  readonly content: Maybe<Scalars['String']>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly eyecatch: Maybe<MicrocmsBlogsEyecatch>;
   readonly id: Scalars['ID'];
@@ -1581,20 +1581,6 @@ type MicrocmsBlogsConnection_sumArgs = {
   field: MicrocmsBlogsFieldsEnum;
 };
 
-type MicrocmsBlogsContent = {
-  readonly fieldId: Maybe<Scalars['String']>;
-  readonly html: Maybe<Scalars['String']>;
-};
-
-type MicrocmsBlogsContentFilterInput = {
-  readonly fieldId: InputMaybe<StringQueryOperatorInput>;
-  readonly html: InputMaybe<StringQueryOperatorInput>;
-};
-
-type MicrocmsBlogsContentFilterListInput = {
-  readonly elemMatch: InputMaybe<MicrocmsBlogsContentFilterInput>;
-};
-
 type MicrocmsBlogsEdge = {
   readonly next: Maybe<MicrocmsBlogs>;
   readonly node: MicrocmsBlogs;
@@ -1661,8 +1647,6 @@ type MicrocmsBlogsFieldsEnum =
   | 'children.parent.parent.children'
   | 'children.parent.parent.id'
   | 'content'
-  | 'content.fieldId'
-  | 'content.html'
   | 'createdAt'
   | 'eyecatch.height'
   | 'eyecatch.url'
@@ -1724,7 +1708,7 @@ type MicrocmsBlogsFilterInput = {
   readonly blogsId: InputMaybe<StringQueryOperatorInput>;
   readonly category: InputMaybe<MicrocmsBlogsCategoryFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
-  readonly content: InputMaybe<MicrocmsBlogsContentFilterListInput>;
+  readonly content: InputMaybe<StringQueryOperatorInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly eyecatch: InputMaybe<MicrocmsBlogsEyecatchFilterInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
@@ -2287,7 +2271,7 @@ type Query_microcmsBlogsArgs = {
   blogsId: InputMaybe<StringQueryOperatorInput>;
   category: InputMaybe<MicrocmsBlogsCategoryFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
-  content: InputMaybe<MicrocmsBlogsContentFilterListInput>;
+  content: InputMaybe<StringQueryOperatorInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   eyecatch: InputMaybe<MicrocmsBlogsEyecatchFilterInput>;
   id: InputMaybe<StringQueryOperatorInput>;
@@ -2319,7 +2303,7 @@ type Query_microcmsCategoriesArgs = {
 type Query_siteArgs = {
   buildTime: InputMaybe<DateQueryOperatorInput>;
   children: InputMaybe<NodeFilterListInput>;
-  flags: InputMaybe<SiteFlagsFilterInput>;
+  graphqlTypegen: InputMaybe<BooleanQueryOperatorInput>;
   host: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
@@ -2391,7 +2375,7 @@ type Query_sitePluginArgs = {
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
   readonly children: ReadonlyArray<Node>;
-  readonly flags: Maybe<SiteFlags>;
+  readonly graphqlTypegen: Maybe<Scalars['Boolean']>;
   readonly host: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
@@ -2702,7 +2686,7 @@ type SiteFieldsEnum =
   | 'children.parent.internal.type'
   | 'children.parent.parent.children'
   | 'children.parent.parent.id'
-  | 'flags.GRAPHQL_TYPEGEN'
+  | 'graphqlTypegen'
   | 'host'
   | 'id'
   | 'internal.content'
@@ -2756,7 +2740,6 @@ type SiteFieldsEnum =
   | 'polyfill'
   | 'port'
   | 'siteMetadata.description'
-  | 'siteMetadata.itemsLimit'
   | 'siteMetadata.siteUrl'
   | 'siteMetadata.title'
   | 'trailingSlash';
@@ -2764,7 +2747,7 @@ type SiteFieldsEnum =
 type SiteFilterInput = {
   readonly buildTime: InputMaybe<DateQueryOperatorInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
-  readonly flags: InputMaybe<SiteFlagsFilterInput>;
+  readonly graphqlTypegen: InputMaybe<BooleanQueryOperatorInput>;
   readonly host: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
@@ -2775,14 +2758,6 @@ type SiteFilterInput = {
   readonly port: InputMaybe<IntQueryOperatorInput>;
   readonly siteMetadata: InputMaybe<SiteSiteMetadataFilterInput>;
   readonly trailingSlash: InputMaybe<StringQueryOperatorInput>;
-};
-
-type SiteFlags = {
-  readonly GRAPHQL_TYPEGEN: Maybe<Scalars['Boolean']>;
-};
-
-type SiteFlagsFilterInput = {
-  readonly GRAPHQL_TYPEGEN: InputMaybe<BooleanQueryOperatorInput>;
 };
 
 type SiteFunction = Node & {
@@ -3522,14 +3497,12 @@ type SitePluginSortInput = {
 
 type SiteSiteMetadata = {
   readonly description: Maybe<Scalars['String']>;
-  readonly itemsLimit: Maybe<Scalars['Int']>;
   readonly siteUrl: Maybe<Scalars['String']>;
   readonly title: Maybe<Scalars['String']>;
 };
 
 type SiteSiteMetadataFilterInput = {
   readonly description: InputMaybe<StringQueryOperatorInput>;
-  readonly itemsLimit: InputMaybe<IntQueryOperatorInput>;
   readonly siteUrl: InputMaybe<StringQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
 };
@@ -3570,12 +3543,17 @@ type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 type IndexPageQuery = { readonly allMicrocmsBlogs: { readonly nodes: ReadonlyArray<{ readonly blogsId: string | null, readonly title: string | null, readonly publishedAt: string | null, readonly revisedAt: string | null }> } };
 
+type SeoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SeoQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null };
+
 type BlogPageQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-type BlogPageQuery = { readonly microcmsBlogs: { readonly blogsId: string | null, readonly title: string | null, readonly publishedAt: string | null, readonly revisedAt: string | null, readonly eyecatch: { readonly url: string | null } | null, readonly content: ReadonlyArray<{ readonly fieldId: string | null, readonly html: string | null } | null> | null } | null };
+type BlogPageQuery = { readonly microcmsBlogs: { readonly blogsId: string | null, readonly title: string | null, readonly content: string | null, readonly publishedAt: string | null, readonly revisedAt: string | null, readonly eyecatch: { readonly url: string | null } | null } | null };
 
 type BlogsPageQueryVariables = Exact<{
   limit: Scalars['Int'];
@@ -3585,10 +3563,36 @@ type BlogsPageQueryVariables = Exact<{
 
 type BlogsPageQuery = { readonly allMicrocmsBlogs: { readonly nodes: ReadonlyArray<{ readonly blogsId: string | null, readonly title: string | null, readonly publishedAt: string | null, readonly revisedAt: string | null }> } };
 
+type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
+
+type GatsbyImageSharpFixed_tracedSVGFragment = { readonly tracedSVG: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
+
+type GatsbyImageSharpFixed_withWebpFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null };
+
+type GatsbyImageSharpFixed_withWebp_tracedSVGFragment = { readonly tracedSVG: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null };
+
+type GatsbyImageSharpFixed_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
+
+type GatsbyImageSharpFixed_withWebp_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null };
+
+type GatsbyImageSharpFluidFragment = { readonly base64: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string };
+
+type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
+
+type GatsbyImageSharpFluid_tracedSVGFragment = { readonly tracedSVG: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string };
+
+type GatsbyImageSharpFluid_withWebpFragment = { readonly base64: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
+
+type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
+
+type GatsbyImageSharpFluid_noBase64Fragment = { readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string };
+
+type GatsbyImageSharpFluid_withWebp_noBase64Fragment = { readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
+
 type CreatePagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type CreatePagesQuery = { readonly allMicrocmsBlogs: { readonly totalCount: number, readonly edges: ReadonlyArray<{ readonly node: { readonly publishedAt: string | null, readonly blogsId: string | null }, readonly next: { readonly blogsId: string | null, readonly title: string | null } | null, readonly previous: { readonly blogsId: string | null, readonly title: string | null } | null }> }, readonly site: { readonly siteMetadata: { readonly itemsLimit: number | null } | null } | null };
+type CreatePagesQuery = { readonly allMicrocmsBlogs: { readonly totalCount: number, readonly edges: ReadonlyArray<{ readonly node: { readonly publishedAt: string | null, readonly blogsId: string | null }, readonly next: { readonly blogsId: string | null, readonly title: string | null } | null, readonly previous: { readonly blogsId: string | null, readonly title: string | null } | null }> } };
 
 
 }
